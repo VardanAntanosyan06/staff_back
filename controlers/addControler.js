@@ -41,13 +41,24 @@ const removeUser = async (req,res)=>{
         }
 }
 
+const getAllUsers = async (req,res)=>{
+    try {
+        const users = await loginModel.findAll({
+            include:[tasksModel]
+        });
+        return res.json(users)
+    } catch (error) {
+        return res.json("something went wrong",error)
+    }
+}
+
 
 const addTask = async (req,res)=>{
         try {
-            const {userEmail,task,deadline} = req.body;
-            const condidat = await loginModel.findOne({where:{email:userEmail}});
+            const {userId,task,deadline} = req.body;
+            const condidat = await loginModel.findOne({where:{id:userId}});
             if(condidat){
-                let newTask = await tasksModel.create({userEmail,task,deadline})
+                let newTask = await tasksModel.create({userId,task,deadline})
                 
                 return res.json({success:true,newTask})
             }else{
@@ -76,9 +87,23 @@ const removeTask = async (req,res)=>{
 
     }
 }
+
+
+const getTasks = async (req,res)=>{
+    try {
+        const users = await tasksModel.findAll()
+        
+        return res.json(users)
+    } catch (error) {
+        return res.json("something went wrong",error)
+    }
+}
+
+
 module.exports = {
     addUser,
     removeUser,
+    getAllUsers,
     addTask,
     removeTask
 }

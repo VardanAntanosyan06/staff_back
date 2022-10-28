@@ -15,8 +15,8 @@ module.exports = {
       deadline: {
         type: Sequelize.STRING
       },
-      userEmail: {
-        type: Sequelize.STRING
+      userId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

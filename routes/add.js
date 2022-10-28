@@ -8,5 +8,8 @@ router.post('/removeUser',addControler.removeUser);
 router.post('/task',addControler.addTask);
 router.post('/removeTask',addControler.removeTask);
 
+router.get("/getAllUsers",addControler.getAllUsers)
+
 
 module.exports = router;
+

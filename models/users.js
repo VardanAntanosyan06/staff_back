@@ -23,5 +23,12 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Users',
   });
+
+  const Tasks = sequelize.define("Tasks")
+
+  Users.hasMany(Tasks,{
+    foreignKey:"userId"
+  })
+
   return Users;
 };
