@@ -44,7 +44,8 @@ const removeUser = async (req,res)=>{
 const getAllUsers = async (req,res)=>{
     try {
         const users = await loginModel.findAll({
-            include:[tasksModel]
+            include:[tasksModel],
+            where:{role :"worker"}
         });
         return res.json(users)
     } catch (error) {
