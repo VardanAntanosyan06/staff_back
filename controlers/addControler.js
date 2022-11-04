@@ -25,7 +25,6 @@ const addUser = async (req,res)=>{
 const removeUser = async (req,res)=>{
         try {
             const {email,password} = req.body;
-            console.log(req.body);
             let item = await loginModel.findOne({where:{email}})
 
             if(item && (await bcrypt.compareSync(password, item.password))){
@@ -53,7 +52,34 @@ const getAllUsers = async (req,res)=>{
     }
 }
 
+const removeAdmin = async (req,res)=>{
+    try {
+        const {email,password} = req.body;
+        let item = await loginModel.findOne({where:{email}})
+        if(item && (await bcrypt.compareSync(password, item.password))){
+            item.destroy()
+            return res.json({success:true})
+        }else{
+            return res.json("invalid email or password!")
+        }
 
+    } catch (error) {
+        return res.json("something went wrong",error)
+
+    }
+}
+
+const getAdmins = async (req,res)=>{
+    try {
+        const admins = await loginModel.findAll({
+            include:[tasksModel],
+            where:{role :"admin"}
+        });
+        return res.json(admins)
+    } catch (error) {
+        return res.json("something went wrong",error)
+    }
+}
 const addTask = async (req,res)=>{
         try {
             const {userId,task,deadline} = req.body;
@@ -105,6 +131,8 @@ module.exports = {
     addUser,
     removeUser,
     getAllUsers,
+    getAdmins,
+    removeAdmin,
     addTask,
     removeTask
 }
