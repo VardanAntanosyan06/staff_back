@@ -72,7 +72,6 @@ const removeAdmin = async (req,res)=>{
 const getAdmins = async (req,res)=>{
     try {
         const admins = await loginModel.findAll({
-            include:[tasksModel],
             where:{role :"admin"}
         });
         return res.json(admins)
