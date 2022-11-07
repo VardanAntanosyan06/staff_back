@@ -15,6 +15,7 @@ const addUser = async (req,res)=>{
            let newItem = await loginModel.create({firstName,lastName,email,password:hash,role,task:null,deadline:null})
             return res.json({success:true,newItem})
         }else{
+            
             return res.json("user alredy exist")
         }
     } catch (error) {
