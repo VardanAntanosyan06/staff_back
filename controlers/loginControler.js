@@ -7,7 +7,7 @@ const login = async (req,res)=>{
         const {email,password} = req.body;
         const condidat = await loginModel.findOne({where:{email}});
         if(condidat && (await bcrypt.compareSync(password, condidat.password))){
-            return res.json({success:true})
+            return res.json({success:true, condidat})
         }else{
             return res.json("invalid email or password")    
         }  
