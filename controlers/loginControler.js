@@ -13,7 +13,7 @@ const login = async (req,res)=>{
         }  
     } catch (error) {
         res.json("something went wrong",error)
-    }
+    }       
 }
 
 

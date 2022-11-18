@@ -41,17 +41,6 @@ const removeUser = async (req,res)=>{
         }
 }
 
-const getAllUsers = async (req,res)=>{
-    try {
-        const users = await loginModel.findAll({
-            include:[tasksModel],
-            where:{role :"worker"}
-        });
-        return res.json(users)
-    } catch (error) {
-        return res.json("something went wrong",error)
-    }
-}
 
 const removeAdmin = async (req,res)=>{
     try {
@@ -70,16 +59,6 @@ const removeAdmin = async (req,res)=>{
     }
 }
 
-const getAdmins = async (req,res)=>{
-    try {
-        const admins = await loginModel.findAll({
-            where:{role :"admin"}
-        });
-        return res.json(admins)
-    } catch (error) {
-        return res.json("something went wrong",error)
-    }
-}
 const addTask = async (req,res)=>{
         try {
             const {userId,task,deadline} = req.body;
@@ -116,22 +95,9 @@ const removeTask = async (req,res)=>{
 }
 
 
-const getTasks = async (req,res)=>{
-    try {
-        const users = await tasksModel.findAll()
-        
-        return res.json(users)
-    } catch (error) {
-        return res.json("something went wrong",error)
-    }
-}
-
-
 module.exports = {
     addUser,
     removeUser,
-    getAllUsers,
-    getAdmins,
     removeAdmin,
     addTask,
     removeTask

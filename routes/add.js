@@ -1,18 +1,13 @@
 var express = require('express');
 var router = express.Router();
-const addControler = require('../controlers/addControler')
+const addControler = require('../controlers/addController')
 
 /* GET home page. */
 router.post('/user',addControler.addUser);
 router.post('/removeUser',addControler.removeUser);
 router.post('/task',addControler.addTask);
 router.post('/removeTask',addControler.removeTask);
-
-
-router.get('/getAdmins',addControler.getAdmins);
 router.get('/removeAdmin',addControler.removeAdmin);
-router.get("/getAllUsers",addControler.getAllUsers)
-
 
 module.exports = router;
 
