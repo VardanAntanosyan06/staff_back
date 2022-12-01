@@ -7,6 +7,7 @@ const getControler = require('../controlers/getController')
 router.get('/AllAdmins',getControler.getAdmins);
 router.get("/allUsers",getControler.getAllUsers)
 router.get("/user",getControler.getUser)
+router.get("/task",getControler.getTask)
 
 
 module.exports = router;

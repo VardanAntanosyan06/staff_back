@@ -7,6 +7,7 @@ router.post('/user',addControler.addUser);
 router.post('/removeUser',addControler.removeUser);
 router.post('/task',addControler.addTask);
 router.post('/removeTask',addControler.removeTask);
+router.post('/updateTaskToProcess',addControler.updateTaskToProcess);
 router.get('/removeAdmin',addControler.removeAdmin);
 
 module.exports = router;

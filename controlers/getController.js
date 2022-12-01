@@ -8,7 +8,7 @@ const getAllUsers = async (req,res)=>{
             include:[tasksModel],
             where:{role :"worker"}
         });
-        return res.json({users})
+        return res.json(users)
     } catch (error) {
         return res.json(error)
     }
@@ -22,7 +22,7 @@ const getUser = async (req,res)=>{
             where:{id},
             include:[tasksModel]
         });
-     return res.json({user})
+     return res.json(user)
 
     } catch (error) {
         return res.json(error)
@@ -41,9 +41,19 @@ const getAdmins = async (req,res)=>{
     }
 }
 
+const getTask = async(req,res)=>{
+    try {
+        const task = await tasksModel.findOne({where:{id:req.query.id}})
+
+        return res.json(task)
+    } catch (error) {
+        return res.json(error)        
+    }
+}
 
 module.exports = {
     getAllUsers,
     getUser,
-    getAdmins
+    getAdmins,
+    getTask,
 }

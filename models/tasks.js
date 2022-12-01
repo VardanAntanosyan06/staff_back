@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     task: DataTypes.STRING,
     deadline: DataTypes.STRING,
     userId: DataTypes.INTEGER,
-    status: DataTypes.STRING
+    status:DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Tasks',
