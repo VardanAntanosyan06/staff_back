@@ -67,7 +67,7 @@ const addTask = async (req, res) => {
         userId,
         task,
         deadline,
-        status: "done",
+        status: "sent",
       });
       return res.json({ success: true, newTask });
     } else {
@@ -89,12 +89,11 @@ const removeTask = async (req, res) => {
   }
 };
 
-const updateTaskToProcess = async (req,res) => {
+const updateTaskStatus = async (req,res) => {
   try {
-    const {id} = req.body;
+    const {id,status} = req.body;
     let updatedStatus = await tasksModel.findOne({where: {id}});
-    console.log(updateTaskToProcess);
-    updatedStatus.status = "inProcess"
+    updatedStatus.status = status;
 
     updatedStatus.save();   
     return res.json({success:true,updatedStatus})
@@ -108,5 +107,5 @@ module.exports = {
   removeAdmin,
   addTask,
   removeTask,
-  updateTaskToProcess
+  updateTaskStatus
 };
